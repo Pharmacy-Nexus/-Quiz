@@ -632,7 +632,7 @@ function ensureShell() {
 
 function renderHome(index) {
   const root = document.getElementById('pageRoot');
-  const subjects = index.subjects;
+  const subjects = index.subjects || [];
   const progress = getProgress();
   const continueState = getContinueState();
   const recent = progress.recent.slice(0, 4);
@@ -647,234 +647,302 @@ function renderHome(index) {
     0
   );
 
+  const topSubjects = subjects.slice(0, 4);
+
   root.innerHTML = `
-    <section class="hero hero-graphic-shell">
-      <span class="hero-chem hero-chem-a">C₂₀H₂₅N₃O</span>
-      <span class="hero-chem hero-chem-b">C₈H₉NO₂</span>
-      <span class="hero-orb hero-orb-a"></span>
-      <span class="hero-orb hero-orb-b"></span>
-
-      <div class="hero-grid">
-        <div>
-          <span class="eyebrow">Pharmacy Nexus • Structured Learning</span>
-          <h1>Your Ultimate Pharmacy Learning Platform <span>Built for Future Pharmacists</span></h1>
-          <p>
-            Move subject by subject, topic by topic, study in clear 30-question sets,
-            review every attempt in detail, and finish with a polished final exam workflow.
-          </p>
-
-          <div class="hero-actions">
-  <a class="btn btn-primary" href="./subjects.html">Explore Subjects</a>
-  <a class="btn btn-secondary" href="./final-exam.html">Go to Final Exam</a>
-  <a class="btn btn-light" href="./auth.html">Sign In</a>
-</div>
-
-          <div class="hero-mini-stats">
-            <div class="mini-stat">
-              <strong>${subjects.length}</strong>
-              <span>Subjects</span>
-            </div>
-            <div class="mini-stat">
-              <strong>${totalQuestions}</strong>
-              <span>Questions</span>
-            </div>
-            <div class="mini-stat">
-              <strong>${accuracy}%</strong>
-              <span>Accuracy</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-panel">
-          <h3>Focused. Clean. Expandable.</h3>
-          <p>
-            Study sets, instant feedback, saved questions, final exam review,
-            dashboard tracking, and hidden admin management inside one lightweight static build.
-          </p>
-
-          <div class="stats-grid">
-            <div class="stat-box"><div class="label">Saved Questions</div><div class="value">${savedCount}</div></div>
-            <div class="stat-box"><div class="label">Notes</div><div class="value">${notesCount}</div></div>
-            <div class="stat-box"><div class="label">Final Exams</div><div class="value">${progress.finalExamsCompleted}</div></div>
-            <div class="stat-box"><div class="label">Accuracy</div><div class="value">${accuracy}%</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ticker-section" style="margin-top:26px;">
-      <div class="ticker-shell">
-        <div class="ticker-track">
-          <span> Study in focused 30-question sets</span>
-          <span> Get instant answer feedback and explanations</span>
-          <span> Save important questions and notes</span>
-          <span> Retry only the questions you missed</span>
-          <span> Practice with timed final exams</span>
-          <span> Study in focused 30-question sets</span>
-          <span> Get instant answer feedback and explanations</span>
-          <span> Save important questions and notes</span>
-          <span> Retry only the questions you missed</span>
-          <span> Practice with timed final exams</span>
-        </div>
-      </div>
-    </section>
-
-    ${continueState ? `
-      <section style="margin-top:30px;">
-        <div class="card continue-banner">
-          <div>
-            <div class="meta-row">
-              <span class="badge">Continue</span>
-              <span class="tag">${continueState.subjectName || 'Subject'}</span>
-            </div>
-            <h3 style="margin:8px 0 6px;">Resume ${continueState.topicName || 'your study session'}</h3>
-            <p class="muted">
-              You stopped at question ${Math.min((continueState.questionIndex || 0) + 1, Math.max(continueState.totalQuestions || 1, 1))}
-              in set ${continueState.setNumber || 1}.
+    <div class="editorial-home">
+      <section class="editorial-hero">
+        <div class="editorial-hero-grid">
+          <div class="editorial-hero-copy">
+            <span class="editorial-kicker">Clinical Mastery Suite</span>
+            <h1>Precision in Practice</h1>
+            <p>
+              Move through pharmacy topics with structure, clarity, and real momentum.
+              Study in focused sets, review every attempt, save what matters, and build a cleaner exam workflow.
             </p>
+
+            <div class="editorial-hero-actions">
+              ${continueState
+                ? `<a class="editorial-btn editorial-btn-light" href="${continueLink()}">Resume Module</a>`
+                : `<a class="editorial-btn editorial-btn-light" href="./subjects.html">Explore Subjects</a>`}
+              <a class="editorial-btn editorial-btn-ghost" href="./final-exam.html">Open Final Exam</a>
+            </div>
           </div>
-          <a class="btn btn-dark" href="${continueLink()}">Resume Now</a>
+
+          <div class="editorial-stat-grid">
+            <div class="editorial-stat-card">
+              <span class="editorial-stat-label">Subjects</span>
+              <strong>${subjects.length}</strong>
+            </div>
+            <div class="editorial-stat-card">
+              <span class="editorial-stat-label">Question Bank</span>
+              <strong>${totalQuestions}</strong>
+            </div>
+            <div class="editorial-stat-card">
+              <span class="editorial-stat-label">Saved Questions</span>
+              <strong>${savedCount}</strong>
+            </div>
+            <div class="editorial-stat-card">
+              <span class="editorial-stat-label">Notes</span>
+              <strong>${notesCount}</strong>
+            </div>
+            <div class="editorial-stat-card editorial-stat-card-wide">
+              <div>
+                <span class="editorial-stat-label">Overall Accuracy</span>
+                <strong>${accuracy}%</strong>
+              </div>
+              <div class="editorial-streak-bars" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-    ` : ''}
 
-    ${buildHomeSubjectCarousel(subjects)}
-
- <section class="home-daily-section" style="margin-top:30px;">
-  <div class="section-header">
-    <div>
-      <h2>Daily Challenge</h2>
-      <p>Spin for a subject, get a lucky number, and launch a fast daily practice session.</p>
-    </div>
-  </div>
-
-  <div class="card home-dark-card daily-challenge-card daily-premium-card">
-    <div class="daily-accent daily-accent-a"></div>
-    <div class="daily-accent daily-accent-b"></div>
-
-    <div class="daily-header-row">
-      <div>
-        <div class="meta-row">
-          <span class="badge">Daily Spin</span>
-          <span class="tag">Premium Hybrid</span>
-        </div>
-        <h3 style="margin:8px 0 6px;">Spin the Subject Wheel</h3>
-        <p class="muted">
-          The wheel updates automatically when you add new subjects. Then generate a lucky question count from 1 to the smart maximum.
-        </p>
-      </div>
-    </div>
-
-    <div class="daily-premium-layout">
-      <div class="daily-wheel-side">
-        <div class="wheel-stage premium-wheel-stage">
-          <div class="wheel-pointer"></div>
-          <div class="daily-wheel-shell premium-wheel-shell">
-            <div class="daily-wheel-disc" id="subjectWheelDisc">
-              <div class="daily-wheel-center"></div>
-              <div class="wheel-labels" id="subjectWheelLabels"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="daily-wheel-result" id="dailySubjectDisplay">Press spin</div>
-        <div class="muted" id="dailySubjectMeta">Chooses from all current subjects in your bank.</div>
-
-        <div class="action-row" style="justify-content:center; margin-top:12px;">
-          <button class="btn btn-light" id="spinSubjectBtn" type="button">Spin Subject</button>
-        </div>
-      </div>
-
-      <div class="daily-lucky-side">
-        <div class="daily-lucky-card">
-          <div class="daily-wheel-label">Lucky Number</div>
-          <div class="daily-lucky-number" id="dailyCountDisplay">?</div>
-          <div class="muted" id="dailyCountMeta">Spin a subject first.</div>
-
-          <div class="action-row" style="justify-content:center; margin-top:14px;">
-            <button class="btn btn-light" id="spinCountBtn" type="button" disabled>Lucky Number</button>
-          </div>
-        </div>
-
-        <div class="daily-selection-summary" id="dailySelectionSummary">
-          <div class="metric-row"><span>Selected Subject</span><strong>—</strong></div>
-          <div class="metric-row"><span>Questions</span><strong>—</strong></div>
-        </div>
-
-        <div class="action-row" style="justify-content:flex-start; margin-top:16px;">
-          <button class="btn btn-primary" id="dailyChallengeBtn" type="button" disabled>Start Daily Challenge</button>
-        </div>
-      </div>
-    </div>
-
-    <div id="dailyChallengeMsg"></div>
-  </div>
-</section>
-    <section style="margin-top:30px;">
-      <div class="section-header">
-        <div>
-          <h2>Recent Activity</h2>
-          <p>Your latest study and exam sessions.</p>
-        </div>
-      </div>
-
-      <div class="card home-dark-card">
-        ${recent.length ? `
-          <div class="list-stack">
-            ${recent.map((item) => `
-              <div class="list-item home-dark-panel">
-                <div>
-                  <strong>${item.name || item.type || 'Activity'}</strong>
-                  <div class="muted">${item.subject || 'Mixed'} • ${item.date || ''}</div>
-                </div>
-                <div class="tag">${item.score || '--'}</div>
+      <section class="editorial-home-grid">
+        <div class="editorial-main-column">
+          <section class="editorial-panel">
+            <div class="editorial-panel-head">
+              <div>
+                <h2>Daily Clinical Dose</h2>
+                <p>Spin a subject, get a smart question count, and launch a focused session.</p>
               </div>
-            `).join('')}
-          </div>
-        ` : `
-          <div class="empty-state">No recent activity yet. Start your first study set to build momentum.</div>
-        `}
-      </div>
-    </section>
+              <span class="editorial-chip editorial-chip-success">Daily</span>
+            </div>
+
+            <div class="editorial-daily-shell">
+              <div class="editorial-daily-question">
+                <p class="editorial-daily-prompt">
+                  A quick randomized practice flow that keeps your daily study structured and light.
+                </p>
+
+                <div class="editorial-wheel-actions">
+                  <button class="editorial-btn editorial-btn-dark" id="spinSubjectBtn" type="button">Spin Subject</button>
+                  <button class="editorial-btn editorial-btn-muted" id="spinCountBtn" type="button" disabled>Lucky Number</button>
+                </div>
+
+                <div class="editorial-daily-summary" id="dailySelectionSummary">
+                  <div class="editorial-summary-row"><span>Selected Subject</span><strong>—</strong></div>
+                  <div class="editorial-summary-row"><span>Questions</span><strong>—</strong></div>
+                </div>
+
+                <div class="editorial-daily-launch">
+                  <button class="editorial-btn editorial-btn-accent" id="dailyChallengeBtn" type="button" disabled>
+                    Start Daily Challenge
+                  </button>
+                </div>
+
+                <div id="dailyChallengeMsg"></div>
+              </div>
+
+              <div class="editorial-daily-side">
+                <div class="editorial-wheel-card">
+                  <div class="editorial-wheel-label">Selected Subject</div>
+                  <div class="editorial-wheel-value" id="dailySubjectDisplay">Press spin</div>
+                  <div class="editorial-wheel-meta" id="dailySubjectMeta">Chooses from all current subjects in your bank.</div>
+                </div>
+
+                <div class="editorial-wheel-card editorial-wheel-card-accent">
+                  <div class="editorial-wheel-label">Lucky Number</div>
+                  <div class="editorial-wheel-number" id="dailyCountDisplay">?</div>
+                  <div class="editorial-wheel-meta" id="dailyCountMeta">Spin a subject first.</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="editorial-section">
+            <div class="editorial-section-head">
+              <div>
+                <h2>Core Disciplines</h2>
+                <p>Your subject gateways with cleaner visual hierarchy.</p>
+              </div>
+              <a class="editorial-link-btn" href="./subjects.html">View All</a>
+            </div>
+
+            <div class="editorial-discipline-grid">
+              ${topSubjects.map((subject, index) => {
+                const accent = getSubjectAccent(subject.name, index);
+                const topicCount = (subject.topics || []).length;
+                const questionCount = (subject.topics || []).reduce((sum, topic) => sum + (topic.questionCount || 0), 0);
+
+                return `
+                  <a class="editorial-discipline-card" href="${pageLink('./topics.html', { subject: subject.id })}">
+                    <div class="editorial-discipline-icon">${accent.icon}</div>
+                    <h3>${subject.name}</h3>
+                    <p>${topicCount} topic${topicCount === 1 ? '' : 's'} • ${questionCount} question${questionCount === 1 ? '' : 's'}</p>
+                    <div class="editorial-card-foot">
+                      <span>${accent.tag}</span>
+                      <span>Open</span>
+                    </div>
+                  </a>
+                `;
+              }).join('')}
+            </div>
+          </section>
+        </div>
+
+        <aside class="editorial-side-column">
+          <section class="editorial-side-card">
+            <div class="editorial-side-head">
+              <h3>Clinical Log</h3>
+              <a href="./dashboard.html">Open Dashboard</a>
+            </div>
+
+            ${recent.length ? `
+              <div class="editorial-log-list">
+                ${recent.map((item) => `
+                  <div class="editorial-log-item">
+                    <div class="editorial-log-dot"></div>
+                    <div>
+                      <strong>${item.name || item.type || 'Activity'}</strong>
+                      <p>${item.subject || 'Mixed'} • ${item.date || ''}</p>
+                      <span>${item.score || '--'}</span>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            ` : `
+              <div class="empty-state">No recent activity yet. Start your first session to build your log.</div>
+            `}
+          </section>
+
+          <section class="editorial-side-card editorial-side-card-soft">
+            <h3>Continue Path</h3>
+            ${continueState ? `
+              <p class="editorial-side-copy">
+                Resume <strong>${continueState.topicName || 'your current topic'}</strong> in
+                set ${continueState.setNumber || 1}.
+              </p>
+              <a class="editorial-btn editorial-btn-dark editorial-btn-block" href="${continueLink()}">Resume Now</a>
+            ` : `
+              <p class="editorial-side-copy">
+                You do not have an active continue point yet. Open a subject and begin a structured set.
+              </p>
+              <a class="editorial-btn editorial-btn-dark editorial-btn-block" href="./subjects.html">Open Subjects</a>
+            `}
+          </section>
+        </aside>
+      </section>
+    </div>
   `;
-const dailyBtn = document.getElementById('dailyChallengeBtn');
-const dailyMsg = document.getElementById('dailyChallengeMsg');
-const spinSubjectBtn = document.getElementById('spinSubjectBtn');
-const spinCountBtn = document.getElementById('spinCountBtn');
 
-const subjectDisplay = document.getElementById('dailySubjectDisplay');
-const countDisplay = document.getElementById('dailyCountDisplay');
-const subjectMeta = document.getElementById('dailySubjectMeta');
-const countMeta = document.getElementById('dailyCountMeta');
-const summary = document.getElementById('dailySelectionSummary');
+  const dailyBtn = document.getElementById('dailyChallengeBtn');
+  const dailyMsg = document.getElementById('dailyChallengeMsg');
+  const spinSubjectBtn = document.getElementById('spinSubjectBtn');
+  const spinCountBtn = document.getElementById('spinCountBtn');
 
-const subjectWheelDisc = document.getElementById('subjectWheelDisc');
-const subjectWheelLabels = document.getElementById('subjectWheelLabels');
+  const subjectDisplay = document.getElementById('dailySubjectDisplay');
+  const countDisplay = document.getElementById('dailyCountDisplay');
+  const subjectMeta = document.getElementById('dailySubjectMeta');
+  const countMeta = document.getElementById('dailyCountMeta');
+  const summary = document.getElementById('dailySelectionSummary');
 
-let selectedDailySubject = null;
-let selectedDailyCount = null;
+  let selectedDailySubject = null;
+  let selectedDailyCount = null;
 
-const subjectOptions = subjects.map((subject) => ({
-  id: subject.id,
-  name: subject.name,
-  totalQuestions: (subject.topics || []).reduce((sum, topic) => sum + (topic.questionCount || 0), 0),
-  label: subject.name
-}));
+  const subjectOptions = subjects.map((subject) => ({
+    id: subject.id,
+    name: subject.name,
+    totalQuestions: (subject.topics || []).reduce((sum, topic) => sum + (topic.questionCount || 0), 0),
+    label: subject.name
+  }));
 
-const wheelPalette = [
-  '#0f274f',
-  '#17386b',
-  '#214b86',
-  '#a98028',
-  '#d0a546',
-  '#355f9d',
-  '#1d3e73',
-  '#6f5320'
-];
+  function refreshDailySummary() {
+    summary.innerHTML = `
+      <div class="editorial-summary-row"><span>Selected Subject</span><strong>${selectedDailySubject?.name || '—'}</strong></div>
+      <div class="editorial-summary-row"><span>Questions</span><strong>${selectedDailyCount || '—'}</strong></div>
+    `;
+    dailyBtn.disabled = !(selectedDailySubject && selectedDailyCount);
+  }
 
-subjectWheelDisc.style.background = polarSegmentBackground(subjectOptions.length, wheelPalette);
-buildWheelLabels(subjectWheelLabels, subjectOptions);
+  function animateLuckyNumber(maxCount, audioCtx) {
+    return new Promise((resolve) => {
+      let ticks = 0;
+      const totalTicks = 16 + Math.floor(Math.random() * 8);
 
+      const interval = setInterval(() => {
+        const value = getRandomInt(1, maxCount);
+        countDisplay.textContent = `${value}`;
+        playTickSound(audioCtx, 950 + (ticks % 4) * 35, 0.012, 0.018);
+        ticks += 1;
+
+        if (ticks >= totalTicks) {
+          clearInterval(interval);
+          const finalValue = getRandomInt(1, maxCount);
+          countDisplay.textContent = `${finalValue}`;
+          playFinishSound(audioCtx);
+          resolve(finalValue);
+        }
+      }, 80);
+    });
+  }
+
+  spinSubjectBtn?.addEventListener('click', async () => {
+    if (!subjectOptions.length) {
+      dailyMsg.innerHTML = '<div class="message error">No subjects available yet.</div>';
+      return;
+    }
+
+    dailyMsg.innerHTML = '';
+    selectedDailyCount = null;
+    countDisplay.textContent = '?';
+    countMeta.textContent = 'Spin a subject first.';
+    spinCountBtn.disabled = true;
+    refreshDailySummary();
+
+    const audioCtx = ensureWheelAudio();
+    spinSubjectBtn.disabled = true;
+    spinSubjectBtn.textContent = 'Spinning...';
+
+    setTimeout(() => {
+      const picked = subjectOptions[Math.floor(Math.random() * subjectOptions.length)];
+      selectedDailySubject = picked;
+      subjectDisplay.textContent = picked.name;
+      const maxCount = clampDailyCount(picked.totalQuestions);
+      subjectMeta.textContent = `${picked.totalQuestions} questions available in this subject.`;
+      countMeta.textContent = `Lucky number range: 1 to ${maxCount}.`;
+      spinCountBtn.disabled = false;
+      spinSubjectBtn.disabled = false;
+      spinSubjectBtn.textContent = 'Spin Subject';
+      playFinishSound(audioCtx);
+      refreshDailySummary();
+    }, 900);
+  });
+
+  spinCountBtn?.addEventListener('click', async () => {
+    if (!selectedDailySubject) return;
+
+    dailyMsg.innerHTML = '';
+    const maxCount = clampDailyCount(selectedDailySubject.totalQuestions);
+    const audioCtx = ensureWheelAudio();
+
+    spinCountBtn.disabled = true;
+    selectedDailyCount = await animateLuckyNumber(maxCount, audioCtx);
+    spinCountBtn.disabled = false;
+
+    countMeta.textContent = `Challenge will use ${selectedDailyCount} question${selectedDailyCount === 1 ? '' : 's'}.`;
+    refreshDailySummary();
+  });
+
+  dailyBtn?.addEventListener('click', async () => {
+    if (!(selectedDailySubject && selectedDailyCount)) return;
+
+    dailyBtn.disabled = true;
+    dailyBtn.textContent = 'Preparing...';
+    dailyMsg.innerHTML = '';
+
+    try {
+      await startDailyChallengeBySubject(selectedDailySubject.id, selectedDailyCount);
+    } catch (error) {
+      dailyMsg.innerHTML = `<div class="message error">${error.message}</div>`;
+      dailyBtn.disabled = false;
+      dailyBtn.textContent = 'Start Daily Challenge';
+    }
+  });
+
+  refreshDailySummary();
+}
 function refreshDailySummary() {
   summary.innerHTML = `
     <div class="metric-row"><span>Selected Subject</span><strong>${selectedDailySubject?.name || '—'}</strong></div>
