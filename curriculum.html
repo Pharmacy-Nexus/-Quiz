@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Subjects - The Clinical Editorial</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#004d60",
+                        "on-surface": "#191c1d",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff1f2",
+                        "secondary": "#106d20",
+                        "on-background": "#191c1d",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "background": "#f8fafb",
+                        "primary-container": "#00677f",
+                        "surface-bright": "#f8fafb",
+                        "on-secondary-fixed": "#002204",
+                        "outline-variant": "#bfc8cd",
+                        "on-secondary-container": "#1a7425",
+                        "primary-fixed-dim": "#86d1ec",
+                        "inverse-primary": "#86d1ec",
+                        "on-tertiary-container": "#c5dbe7",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eceeef",
+                        "surface": "#f8fafb",
+                        "surface-container-low": "#f2f4f5",
+                        "on-primary-container": "#98e3ff",
+                        "on-tertiary-fixed": "#071e27",
+                        "on-secondary-fixed-variant": "#005312",
+                        "surface-variant": "#e1e3e4",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#354a53",
+                        "inverse-surface": "#2e3132",
+                        "tertiary": "#344953",
+                        "on-primary-fixed-variant": "#004e60",
+                        "secondary-fixed": "#9df898",
+                        "surface-container-high": "#e6e8e9",
+                        "tertiary-container": "#4c616b",
+                        "outline": "#6f787d",
+                        "surface-container-highest": "#e1e3e4",
+                        "secondary-fixed-dim": "#82db7e",
+                        "primary-fixed": "#b6eaff",
+                        "tertiary-fixed": "#cfe6f2",
+                        "surface-dim": "#d8dadb",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#00677f",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#9df898",
+                        "on-surface-variant": "#3f484c",
+                        "on-primary-fixed": "#001f28",
+                        "tertiary-fixed-dim": "#b4cad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {},
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<link href="./assets/app-mounted.css" rel="stylesheet"/></head>
+<body class="bg-background text-on-surface font-body antialiased selection:bg-primary-container selection:text-on-primary-container" data-page="topics">
+<!-- Top Navigation -->
+<nav class="fixed top-0 right-0 w-full z-50 flex justify-between items-center px-8 h-16 bg-surface/80 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,77,96,0.06)] transition-all duration-300 ease-in-out tonal-shift bg-[#f8fafb]">
+<!-- Brand / Mobile Menu (Hidden on Web if SideNav is present, but TopNavBar is requested full width docked. Adapting to JSON instructions for TopNavBar: "docked full-width top-0" AND "fixed top-0 right-0 w-[calc(100%-16rem)]". We will use the JSON shell layout.) -->
+<div class="fixed top-0 right-0 w-[calc(100%-16rem)] z-50 flex justify-between items-center px-8 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,77,96,0.06)] bg-[#f8fafb] dark:bg-slate-950">
+<div class="flex items-center gap-8">
+<span class="text-lg font-black text-[#004d60] dark:text-cyan-400 font-['Manrope'] tracking-tight">The Clinical Editorial</span>
+<div class="hidden md:flex gap-6">
+<a class="text-[#344953] dark:text-slate-400 font-['Manrope'] font-medium hover:text-[#00677f] dark:hover:text-cyan-300 transition-all duration-300 ease-in-out" href="#">Curriculum</a>
+<a class="text-[#344953] dark:text-slate-400 font-['Manrope'] font-medium hover:text-[#00677f] dark:hover:text-cyan-300 transition-all duration-300 ease-in-out" href="#">Resources</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<!-- Search -->
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+<input class="bg-surface-container-low text-on-surface pl-10 pr-4 py-2 rounded-full text-sm border-none focus:ring-0 focus:bg-surface-container-lowest focus:outline focus:outline-2 focus:outline-primary/30 transition-all w-64 placeholder:text-outline font-body" placeholder="Search syllabus..." type="text"/>
+</div>
+<div class="flex items-center gap-4 text-[#004d60] dark:text-cyan-400">
+<button class="hover:text-[#00677f] dark:hover:text-cyan-300 transition-all duration-300 ease-in-out opacity-80 hover:scale-[0.99]">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:text-[#00677f] dark:hover:text-cyan-300 transition-all duration-300 ease-in-out opacity-80 hover:scale-[0.99]">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_12px_40px_rgba(0,77,96,0.06)] border-2 border-surface-container-lowest" data-alt="Professional headshot of a female pharmacy student in a clinical setting with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPVTSddywphvDbTcJEgduobebZ2VmDdKAAkGp6TXRfmkj3FgM-gUk1SBWIBCbS1rempiVuodEboHkcSEuunfKzUyc2VNFsW0oLFtX8lEgA-_XKyer2FNclPHLml-ejhfVmtIUmynBQmvJUKVa8OyCDJdUGCzdFj7icvSxyEMuxQbQuaCq_cLoBV21--DYRZXZM0CfpwQDM0cNHm5KO3doeov327Il1voS6dWksXYRSKIj3P-G-NTNOFNCeQq7E0LSLNoFXLv4lrw9E"/>
+</div>
+</div>
+</div>
+</nav>
+<!-- Side Navigation -->
+<aside class="fixed left-0 top-0 h-full flex flex-col py-8 px-4 w-64 border-r-0 bg-[#f8fafb] dark:bg-slate-950 font-['Manrope'] tracking-tight bg-[#f2f4f5] dark:bg-slate-900 z-40">
+<!-- Header -->
+<div class="flex items-center gap-4 mb-12 px-4">
+<img alt="Student Profile Picture" class="w-12 h-12 rounded-full object-cover" data-alt="Professional headshot of a female pharmacy student in a clinical setting with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD7s2a0WqInX1YaLDJZGBPyAUDgvkAF5y1UJZUzTdKrSrZUil1fUoZ0rv3tJAowwLraeXFB7cu2iJHZZ5QbaoyNQmZgNctxeSlCnSpTc-P91q--c8o2w0c8gMdzfq23OZYOddrRTS6SQHbB1LDQ2jJV58oYU_N1epz2la4Ah7RALmSL9jKCHs0KYepM3MK9IaSe0K8R0FmET2zXqkUHC_8oRLDeFcTazjmcwxAFTRCDu0evxIr1u4U1M2LAgEZElNIn_ZWh_xWB9rI"/>
+<div>
+<h1 class="text-xl font-bold text-[#004d60] dark:text-cyan-400 leading-tight">Clinical Editorial</h1>
+<p class="text-sm text-tertiary">Pharmacy Scholar</p>
+</div>
+</div>
+<!-- Main Nav -->
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#344953] dark:text-slate-400 hover:bg-[#f2f4f5] dark:hover:bg-slate-800 transition-colors opacity-80 hover:scale-[0.99]" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-medium">Home</span>
+</a>
+<!-- Active State: Subjects -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#004d60] dark:text-cyan-400 font-bold border-r-4 border-[#004d60] hover:bg-[#f2f4f5] dark:hover:bg-slate-800 transition-colors opacity-80 scale-[0.99] bg-[#f2f4f5]" href="#">
+<span class="material-symbols-outlined" data-icon="science" data-weight="fill" style="font-variation-settings: 'FILL' 1;">science</span>
+<span>Subjects</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#344953] dark:text-slate-400 hover:bg-[#f2f4f5] dark:hover:bg-slate-800 transition-colors opacity-80 hover:scale-[0.99]" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#344953] dark:text-slate-400 hover:bg-[#f2f4f5] dark:hover:bg-slate-800 transition-colors opacity-80 hover:scale-[0.99]" href="#">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+<span class="font-medium">Saved</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#344953] dark:text-slate-400 hover:bg-[#f2f4f5] dark:hover:bg-slate-800 transition-colors opacity-80 hover:scale-[0.99]" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-medium">Final Exam</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#344953] dark:text-slate-400 hover:bg-[#f2f4f5] dark:hover:bg-slate-800 transition-colors opacity-80 hover:scale-[0.99]" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-medium">Settings</span>
+</a>
+</nav>
+<!-- CTA & Footer -->
+<div class="mt-auto space-y-6">
+<button class="w-full py-3 px-4 rounded-md bg-primary text-on-primary font-medium hover:bg-primary-container transition-colors shadow-[0_12px_40px_rgba(0,77,96,0.06)]">
+                Start Study Session
+            </button>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-[#344953] dark:text-slate-400 hover:bg-[#f2f4f5] dark:hover:bg-slate-800 transition-colors opacity-80 hover:scale-[0.99]" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-medium">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 px-12 pb-24 min-h-screen"><div id="pageRoot"></div></main>
+<script src="assets/site-router.js"></script>
+<script src="./assets/app-mounted.js"></script></body></html>
