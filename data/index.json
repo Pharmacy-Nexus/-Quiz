@@ -1,0 +1,34 @@
+{
+  "subjects": [
+    {
+      "id": "pharmacology",
+      "name": "Pharmacology",
+      "topics": [
+        {
+          "id": "autonomic-pharmacology",
+          "name": "Autonomic Pharmacology",
+          "file": "data/pharmacology/autonomic-pharmacology.json",
+          "questionCount": 4
+        },
+        {
+          "id": "cardiovascular-pharmacology",
+          "name": "Cardiovascular Pharmacology",
+          "file": "data/pharmacology/cardiovascular-pharmacology.json",
+          "questionCount": 4
+        }
+      ]
+    },
+    {
+      "id": "clinical-pharmacy",
+      "name": "Clinical Pharmacy",
+      "topics": [
+        {
+          "id": "hypertension",
+          "name": "Hypertension",
+          "file": "data/clinical-pharmacy/hypertension.json",
+          "questionCount": 4
+        }
+      ]
+    }
+  ]
+}
