@@ -1,1 +1,28 @@
-[]
+{
+  "subjects": [
+    {
+      "id": "pharmacology",
+      "name": "Pharmacology",
+      "topics": [
+        {
+          "id": "cardiovascular-pharm",
+          "name": "Cardiovascular Pharmacology",
+          "questionCount": 2,
+          "file": "data/subjects/pharmacology/cardiovascular-pharm.json"
+        }
+      ]
+    },
+    {
+      "id": "pharmaceutics",
+      "name": "Pharmaceutics",
+      "topics": [
+        {
+          "id": "dosage-forms",
+          "name": "Dosage Forms",
+          "questionCount": 1,
+          "file": "data/subjects/pharmaceutics/dosage-forms.json"
+        }
+      ]
+    }
+  ]
+}
