@@ -87,14 +87,14 @@
 <style>
         body { font-family: 'Manrope', sans-serif; }
     </style>
-</head>
-<body data-page="review" class="bg-surface text-on-surface flex h-screen overflow-hidden">
+<link href="./assets/app-mounted.css" rel="stylesheet"/></head>
+<body class="bg-surface text-on-surface flex h-screen overflow-hidden" data-page="review">
 <!-- SideNav -->
 <aside class="fixed left-0 top-0 h-full flex flex-col py-8 bg-[#f3f4f5] dark:bg-[#002b36] text-[#00151b] dark:text-[#f8f9fa] font-['Manrope'] text-sm tracking-wide h-screen w-64 rounded-r-[3rem] bg-gradient-to-r from-transparent to-[#e7e8e9] dark:to-[#00151b] shadow-[20px_0_40px_rgba(0,21,27,0.06)] hidden md:flex z-50">
 <div class="px-8 mb-8 flex items-center gap-4">
 <img alt="Pharmacy Intern Avatar" class="w-12 h-12 rounded-full object-cover shadow-sm" data-alt="Portrait of a young medical professional in a lab coat, clinical lighting, soft focus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh2Xwe2mcYOoqJwUQezp7QnwG9oI0iB4FDDONOXg6vFMsBJSI-Glri6hDNFyGpRj6OqBF6Wzk8OcB-DJdUFTlcgjYvZRWhKX9OuHGr6Di5vjaDFVDAMG7B-ZrDtugnX0NJPQNTh3zAIyLqjCNmlkEpbbmsvxliv_OHiu6UFUb4bLeqDIVVeITuSMwR_7PMPFCHj_0qpeN8KB-pc2ATbBy3KWMv94V4KCTvk6Z6zX5u1zHKCpijj3jtYDKOHR8t4SaWCNcRm6M9W24j"/>
 <div>
-<h1 class="font-bold text-base">Pharmacy Nexus Review</h1>
+<h1 class="font-bold text-base">Intern Review</h1>
 <p class="text-xs text-on-surface-variant">Pharmacy Board Prep</p>
 </div>
 </div>
@@ -129,148 +129,6 @@
 </div>
 </aside>
 <!-- Main Content -->
-<main class="flex-1 ml-0 md:ml-64 h-full overflow-y-auto bg-surface pt-8 px-6 lg:px-16 pb-24 relative">
-<!-- Radial Gradient Hero Backdrop (simulated via absolute div) -->
-<div class="absolute top-0 left-0 w-full h-96 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-primary-container/20 via-surface to-surface -z-10 pointer-events-none"></div>
-<div class="max-w-[1200px] mx-auto">
-<!-- Header -->
-<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-<div>
-<span class="text-label-md uppercase tracking-[0.05em] text-on-surface-variant mb-2 block font-semibold">Post-Assessment Analysis</span>
-<h2 class="text-display-lg md:text-5xl font-extrabold text-primary tracking-[-0.02em] leading-tight">Performance Review <br/><span class="text-on-surface-variant font-medium text-3xl">Session ID #8842</span></h2>
-</div>
-<div class="flex gap-3">
-<button class="px-6 py-3 bg-surface-container-high text-on-surface rounded-md font-semibold hover:bg-surface-variant transition-colors flex items-center gap-2">
-<span class="material-symbols-outlined">arrow_back</span>
-                         Back to Curriculum
-                    </button>
-</div>
-</header>
-<!-- Summary Bento Grid -->
-<section class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-<!-- Score Card -->
-<div class="bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-between shadow-[0_20px_40px_rgba(0,21,27,0.02)] relative overflow-hidden group">
-<div class="absolute -right-4 -top-4 w-24 h-24 bg-tertiary/10 rounded-full blur-xl group-hover:bg-tertiary/20 transition-all"></div>
-<span class="text-label-md uppercase tracking-[0.05em] text-on-surface-variant font-semibold mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined text-tertiary">workspace_premium</span>
-                        Total Score
-                     </span>
-<div class="flex items-baseline gap-1">
-<span class="text-6xl font-black text-primary tracking-tighter">8</span>
-<span class="text-2xl text-on-surface-variant font-medium">/10</span>
-</div>
-</div>
-<!-- Percentage Card -->
-<div class="bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-between shadow-[0_20px_40px_rgba(0,21,27,0.02)]">
-<span class="text-label-md uppercase tracking-[0.05em] text-on-surface-variant font-semibold mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">percent</span>
-                        Accuracy
-                    </span>
-<div class="text-6xl font-black text-primary tracking-tighter">
-                        80<span class="text-4xl text-on-surface-variant font-medium ml-1">%</span>
-</div>
-</div>
-<!-- Correct Card -->
-<div class="bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-between shadow-[0_20px_40px_rgba(0,21,27,0.02)] border-l-4 border-transparent border-l-[#316574]">
-<span class="text-label-md uppercase tracking-[0.05em] text-on-surface-variant font-semibold mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined text-secondary">check_circle</span>
-                        Correct
-                    </span>
-<div class="text-6xl font-black text-secondary tracking-tighter">
-                        8
-                    </div>
-</div>
-<!-- Incorrect Card -->
-<div class="bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-between shadow-[0_20px_40px_rgba(0,21,27,0.02)] border-l-4 border-transparent border-l-error">
-<span class="text-label-md uppercase tracking-[0.05em] text-on-surface-variant font-semibold mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined text-error">cancel</span>
-                        Incorrect
-                    </span>
-<div class="text-6xl font-black text-error tracking-tighter">
-                        2
-                    </div>
-</div>
-</section>
-<!-- Actions Row -->
-<div class="flex flex-col sm:flex-row gap-4 mb-16 p-6 bg-surface-container-low rounded-xl">
-<button class="flex-1 py-4 bg-primary text-on-primary rounded-md font-semibold text-body-lg hover:scale-[0.98] transition-transform shadow-[0_10px_20px_rgba(0,21,27,0.1)] flex items-center justify-center gap-2">
-<span class="material-symbols-outlined">restart_alt</span>
-                    Retry Wrong Questions
-                </button>
-<button class="flex-1 py-4 bg-surface-container-lowest text-primary rounded-md font-semibold text-body-lg hover:bg-surface-variant transition-colors border border-outline-variant/15 flex items-center justify-center gap-2">
-<span class="material-symbols-outlined">play_circle</span>
-                    Start New Practice
-                </button>
-</div>
-<!-- Detailed Review Feed -->
-<div class="space-y-12">
-<h3 class="text-headline-sm font-bold text-primary tracking-tight mb-8">Question Analysis</h3>
-<!-- Question Item 1 (Incorrect) -->
-<article class="bg-surface-container-lowest rounded-xl p-8 md:p-12 shadow-[0_20px_40px_rgba(0,21,27,0.04)] relative">
-<!-- Meta -->
-<div class="flex items-center justify-between mb-8">
-<div class="flex items-center gap-4">
-<span class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-primary">1</span>
-<div class="flex gap-2">
-<span class="px-3 py-1 bg-surface-container-low text-on-surface-variant text-label-md uppercase tracking-wider rounded-md font-semibold">Clinical Case</span>
-<span class="px-3 py-1 bg-error-container/40 text-on-error-container text-label-md uppercase tracking-wider rounded-md font-semibold backdrop-blur-md">Hard</span>
-</div>
-</div>
-<button aria-label="Bookmark" class="text-on-surface-variant hover:text-tertiary transition-colors">
-<span class="material-symbols-outlined text-3xl">bookmark_add</span>
-</button>
-</div>
-<!-- Question Text -->
-<p class="text-body-lg leading-relaxed text-primary font-medium mb-10 max-w-4xl">
-                        A 68-year-old male presents to the clinic with newly diagnosed atrial fibrillation. He has a history of hypertension and type 2 diabetes mellitus. His current medications include lisinopril and metformin. His calculated CHA2DS2-VASc score is 3. Which of the following anticoagulant regimens is most appropriate for stroke prevention in this patient, assuming normal renal function?
-                    </p>
-<!-- Answers Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-<div class="p-6 rounded-md bg-surface-container-low border border-outline-variant/15 flex items-start gap-4">
-<div class="w-6 h-6 rounded-full border-2 border-outline-variant mt-1"></div>
-<span class="text-body-lg text-on-surface">Warfarin with an INR target of 2.0-3.0</span>
-</div>
-<!-- Wrong Selected -->
-<div class="p-6 rounded-md bg-error-container/20 border-2 border-error/30 flex items-start gap-4 relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-error"></div>
-<div class="w-6 h-6 rounded-full bg-error text-on-error flex items-center justify-center mt-1">
-<span class="material-symbols-outlined text-sm">close</span>
-</div>
-<div class="flex-1">
-<span class="text-body-lg text-on-surface font-medium block">Aspirin 81 mg daily</span>
-<span class="text-sm text-error mt-2 block font-semibold">Your Answer</span>
-</div>
-</div>
-<div class="p-6 rounded-md bg-surface-container-low border border-outline-variant/15 flex items-start gap-4">
-<div class="w-6 h-6 rounded-full border-2 border-outline-variant mt-1"></div>
-<span class="text-body-lg text-on-surface">Clopidogrel 75 mg daily</span>
-</div>
-<!-- Correct Answer -->
-<div class="p-6 rounded-md bg-secondary-container/30 border-2 border-secondary/30 flex items-start gap-4 relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
-<div class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center mt-1">
-<span class="material-symbols-outlined text-sm">check</span>
-</div>
-<div class="flex-1">
-<span class="text-body-lg text-on-surface font-semibold block">Apixaban 5 mg twice daily</span>
-<span class="text-sm text-secondary mt-2 block font-semibold">Correct Answer</span>
-</div>
-</div>
-</div>
-<!-- Rationale Section -->
-<div class="bg-primary-container p-8 rounded-xl border border-outline-variant/10">
-<h4 class="text-primary-fixed font-bold tracking-wide uppercase text-sm mb-4 flex items-center gap-2">
-<span class="material-symbols-outlined text-lg">science</span>
-                            Clinical Rationale
-                        </h4>
-<p class="text-primary-fixed-dim leading-relaxed text-body-lg max-w-4xl">
-                            In patients with non-valvular atrial fibrillation and a CHA2DS2-VASc score of ≥2 in men (or ≥3 in women), oral anticoagulation is recommended to reduce the risk of stroke. Direct oral anticoagulants (DOACs), such as apixaban, are generally preferred over warfarin due to a lower risk of major bleeding (particularly intracranial hemorrhage) and lack of routine monitoring requirements. Aspirin monotherapy is inadequate for stroke prevention in patients with this risk profile and is no longer recommended.
-                        </p>
-</div>
-</article>
-</div>
-</div>
-</main>
-
-<script src="./assets/js/bridge.js"></script>
-</body></html>
+<main class="flex-1 ml-0 md:ml-64 h-full overflow-y-auto bg-surface pt-8 px-6 lg:px-16 pb-24 relative"><div id="pageRoot"></div></main>
+<script src="assets/site-router.js"></script>
+<script src="./assets/app-mounted.js"></script></body></html>
