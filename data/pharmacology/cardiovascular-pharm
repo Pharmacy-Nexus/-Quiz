@@ -1,0 +1,40 @@
+{
+  "questions": [
+    {
+      "id": "pharm-cardio-1",
+      "type": "MCQ",
+      "subject": "pharmacology",
+      "topic": "cardiovascular-pharm",
+      "question": "Which class of drugs is commonly used first-line in heart failure with reduced ejection fraction?",
+      "options": [
+        "Loop diuretics only",
+        "ACE inhibitors / ARNI-based foundational therapy",
+        "Calcium channel blockers",
+        "Nitrates alone"
+      ],
+      "correctAnswer": "ACE inhibitors / ARNI-based foundational therapy",
+      "explanation": "Foundational HFrEF therapy includes RAAS inhibition such as ACE inhibitors or ARNI depending on clinical scenario.",
+      "difficulty": "medium",
+      "caseScenario": "A 65-year-old with symptomatic HFrEF is beginning chronic therapy after stabilization.",
+      "imageUrl": ""
+    },
+    {
+      "id": "pharm-cardio-2",
+      "type": "MCQ",
+      "subject": "pharmacology",
+      "topic": "cardiovascular-pharm",
+      "question": "Which electrolyte abnormality increases the risk of digoxin toxicity?",
+      "options": [
+        "Hypernatremia",
+        "Hypokalemia",
+        "Hypermagnesemia",
+        "Hypercalcemia only"
+      ],
+      "correctAnswer": "Hypokalemia",
+      "explanation": "Hypokalemia enhances digoxin binding to Na+/K+-ATPase and increases toxicity risk.",
+      "difficulty": "medium",
+      "caseScenario": "An older patient taking digoxin presents with nausea after aggressive diuresis.",
+      "imageUrl": ""
+    }
+  ]
+}
