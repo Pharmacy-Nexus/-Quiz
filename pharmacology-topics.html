@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pharmacy Scholar - Pharmacology Topics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#cba72f",
+                    "surface-container": "#edeeef",
+                    "on-primary-fixed": "#001f28",
+                    "on-tertiary": "#ffffff",
+                    "secondary-container": "#b4e8f9",
+                    "surface-bright": "#f8f9fa",
+                    "on-secondary-container": "#366978",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#d9dadb",
+                    "tertiary": "#735c00",
+                    "tertiary-fixed": "#ffe088",
+                    "surface-container-low": "#f3f4f5",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#002b36",
+                    "on-tertiary-fixed": "#241a00",
+                    "on-secondary-fixed-variant": "#144d5b",
+                    "secondary": "#316574",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "surface-container-high": "#e7e8e9",
+                    "outline-variant": "#c1c7cb",
+                    "on-primary-container": "#6f93a0",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#c3e8f7",
+                    "primary": "#00151b",
+                    "on-surface-variant": "#41484b",
+                    "on-secondary-fixed": "#001f27",
+                    "secondary-fixed-dim": "#9bcedf",
+                    "secondary-fixed": "#b7ebfc",
+                    "background": "#f8f9fa",
+                    "on-tertiary-container": "#4e3d00",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-background": "#191c1d",
+                    "inverse-on-surface": "#f0f1f2",
+                    "surface-variant": "#e1e3e4",
+                    "surface": "#f8f9fa",
+                    "outline": "#71787b",
+                    "on-primary-fixed-variant": "#274c57",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "surface-tint": "#406370",
+                    "inverse-surface": "#2e3132",
+                    "primary-fixed-dim": "#a7ccda",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#a7ccda",
+                    "on-surface": "#191c1d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope", "sans-serif"],
+                    "body": ["Manrope", "sans-serif"],
+                    "label": ["Manrope", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex flex-col md:flex-row min-h-screen">
+<!-- TopNavBar (Mobile) -->
+<nav class="md:hidden flex justify-between items-center w-full px-8 py-4 bg-surface-container-low text-primary docked full-width top-0 font-headline font-bold tracking-tight shadow-none border-none relative z-50">
+<div class="text-xl font-extrabold tracking-tighter text-primary">Clinical Editorial Premium</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded-full scale-95 active:scale-98 duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded-full scale-95 active:scale-98 duration-200">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar (Web) -->
+<aside class="hidden md:flex flex-col h-screen w-64 bg-surface-container-low text-primary font-body text-sm font-medium tracking-wide sticky top-0 py-8 px-6 gap-y-4 shadow-none border-none z-40 relative">
+<div class="mb-8 px-4">
+<h2 class="text-lg font-black text-primary mb-1">Pharmacy Scholar</h2>
+<p class="text-xs text-on-surface-variant">Premium Access</p>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/50 transition-all scale-98 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-primary font-bold bg-white/50 border-r-4 border-tertiary transition-all scale-98 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span>Subjects</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/50 transition-all scale-98 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/50 transition-all scale-98 duration-200" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+<span>Saved</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/50 transition-all scale-98 duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+<span>Final Exam</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/50 transition-all scale-98 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-xl font-bold text-sm tracking-wide hover:bg-on-primary-fixed scale-98 active:scale-95 duration-200 transition-all shadow-none">
+                Review Formulas
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col min-h-screen pb-24 md:pb-8 relative w-full overflow-x-hidden">
+<!-- TopAppBar (Web) - Contextual -->
+<header class="hidden md:flex justify-between items-center w-full px-12 py-8 bg-surface text-primary z-30 sticky top-0 backdrop-blur-md bg-opacity-90">
+<div>
+<nav class="flex text-sm text-on-surface-variant font-medium mb-2 gap-2">
+<a class="hover:text-primary transition-colors" href="#">Subjects</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">Pharmacology</span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-64 bg-surface-container-low rounded-full px-4 py-2 flex items-center gap-2 focus-within:bg-surface-container-lowest focus-within:ring-2 focus-within:ring-tertiary transition-all duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-medium w-full text-primary placeholder-on-surface-variant/70 outline-none" placeholder="Search topics..." type="text"/>
+</div>
+</div>
+</header>
+<div class="px-6 md:px-12 py-8 flex-1 max-w-7xl mx-auto w-full">
+<!-- Hero / Metrics Section -->
+<section class="mb-12 relative rounded-[3rem] overflow-hidden bg-gradient-to-br from-primary to-primary-container p-8 md:p-12 text-on-primary shadow-[0_20px_40px_rgba(0,21,27,0.15)] flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
+<!-- Decorative blurred shapes -->
+<div class="absolute top-[-20%] right-[-10%] w-96 h-96 bg-secondary/30 rounded-full mix-blend-screen filter blur-[80px] opacity-70 pointer-events-none"></div>
+<div class="absolute bottom-[-20%] left-[10%] w-72 h-72 bg-tertiary/20 rounded-full mix-blend-screen filter blur-[60px] opacity-50 pointer-events-none"></div>
+<div class="relative z-10 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold tracking-widest uppercase mb-6 text-primary-fixed">
+<span class="material-symbols-outlined text-[14px]">science</span> Core Subject
+                    </div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-headline font-extrabold tracking-tight mb-4 text-surface-container-lowest">
+                        Pharmacodynamics &amp; Kinetics
+                    </h1>
+<p class="text-lg text-primary-fixed-dim leading-relaxed font-body max-w-xl">
+                        Comprehensive analysis of drug mechanisms, receptor interactions, and the mathematical modeling of absorption, distribution, metabolism, and excretion.
+                    </p>
+</div>
+<div class="relative z-10 flex flex-row md:flex-col gap-4 w-full md:w-auto">
+<div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-6 flex-1 md:w-64 flex flex-col justify-center">
+<p class="text-sm text-primary-fixed-dim font-medium mb-1 uppercase tracking-wider">Mastery Score</p>
+<div class="flex items-end gap-2">
+<span class="text-4xl font-black text-tertiary-fixed">72%</span>
+<span class="text-sm text-primary-fixed mb-1">/ 100</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1.5 mt-4 overflow-hidden">
+<div class="bg-tertiary-fixed h-1.5 rounded-full" style="width: 72%"></div>
+</div>
+</div>
+<div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] p-6 flex-1 md:w-64 flex flex-col justify-center">
+<p class="text-sm text-primary-fixed-dim font-medium mb-1 uppercase tracking-wider">Topics Completed</p>
+<div class="flex items-end gap-2">
+<span class="text-4xl font-black text-surface-container-lowest">14</span>
+<span class="text-sm text-primary-fixed mb-1">/ 28</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Content Grid Layout -->
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Main Topics Feed -->
+<div class="flex-1 flex flex-col gap-8">
+<div class="flex justify-between items-end mb-2">
+<h2 class="text-2xl font-headline font-bold text-primary tracking-tight">Curriculum Modules</h2>
+<button class="text-sm font-bold text-secondary hover:text-primary transition-colors flex items-center gap-1">
+                            Filter <span class="material-symbols-outlined text-[18px]">filter_list</span>
+</button>
+</div>
+<!-- Topic Card 1 (Completed) -->
+<article class="group bg-surface-container-lowest rounded-[2rem] p-8 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden hover:bg-surface-bright transition-colors duration-300">
+<!-- Subtle progress indicator line -->
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-secondary opacity-80"></div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Module 1 • Completed</span>
+</div>
+<h3 class="text-2xl font-headline font-extrabold text-primary mb-3 group-hover:text-secondary transition-colors">Receptor Theory Fundamentals</h3>
+<p class="text-on-surface-variant leading-relaxed mb-6 font-body text-sm md:text-base">
+                                Examination of agonist/antagonist dynamics, allosteric modulation, and the quantitative analysis of dose-response relationships.
+                            </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-surface-container-low text-primary rounded-xl text-xs font-bold tracking-wide border border-outline-variant/15">Affinity &amp; Efficacy</span>
+<span class="px-3 py-1.5 bg-surface-container-low text-primary rounded-xl text-xs font-bold tracking-wide border border-outline-variant/15">Schild Plot</span>
+<span class="px-3 py-1.5 bg-surface-container-low text-primary rounded-xl text-xs font-bold tracking-wide border border-outline-variant/15">G-Protein Coupled</span>
+</div>
+</div>
+<div class="w-full md:w-auto flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4">
+<div class="text-right">
+<p class="text-xs text-on-surface-variant font-medium mb-1">Score</p>
+<p class="text-2xl font-black text-secondary">94%</p>
+</div>
+<button class="px-6 py-3 bg-surface-container-low text-primary rounded-xl font-bold text-sm hover:bg-surface-container-high transition-colors scale-98 active:scale-95 duration-200 border border-outline-variant/15">
+                                Review
+                            </button>
+</div>
+</article>
+<!-- Topic Card 2 (In Progress) -->
+<article class="group bg-surface-container-lowest rounded-[2rem] p-8 flex flex-col md:flex-row gap-8 items-start relative overflow-hidden shadow-[0_10px_30px_rgba(0,21,27,0.03)] border border-outline-variant/15">
+<!-- Active indicator -->
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-tertiary opacity-100"></div>
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-2.5 h-2.5 rounded-full bg-tertiary animate-pulse"></div>
+<span class="text-xs font-bold uppercase tracking-widest text-tertiary">Module 2 • In Progress</span>
+</div>
+<h3 class="text-2xl font-headline font-extrabold text-primary mb-3">Clearance &amp; Half-Life</h3>
+<p class="text-on-surface-variant leading-relaxed mb-6 font-body text-sm md:text-base">
+                                Mathematical derivation of elimination kinetics, focusing on first-order vs. zero-order processes and steady-state concentration calculations.
+                            </p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-primary-fixed/20 text-on-secondary-fixed-variant rounded-xl text-xs font-bold tracking-wide">First-Order Kinetics</span>
+<span class="px-3 py-1.5 bg-surface-container-low text-primary rounded-xl text-xs font-bold tracking-wide border border-outline-variant/15">Volume of Distribution</span>
+</div>
+</div>
+<div class="w-full md:w-auto flex flex-row md:flex-col items-center md:items-end justify-between md:justify-center gap-4">
+<div class="w-32 text-right">
+<div class="flex justify-between text-xs font-medium mb-1 text-on-surface-variant">
+<span>Progress</span>
+<span>45%</span>
+</div>
+<div class="w-full bg-surface-container-low rounded-full h-1.5 overflow-hidden">
+<div class="bg-tertiary h-1.5 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<button class="px-6 py-3 bg-primary text-on-primary rounded-xl font-bold text-sm hover:bg-on-primary-fixed transition-colors scale-98 active:scale-95 duration-200 flex items-center gap-2">
+                                Continue <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Topic Card 3 (Locked/Upcoming) -->
+<article class="bg-surface-container-low rounded-[2rem] p-8 flex flex-col md:flex-row gap-8 items-start opacity-75">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-outline">lock</span>
+<span class="text-xs font-bold uppercase tracking-widest text-outline">Module 3 • Upcoming</span>
+</div>
+<h3 class="text-2xl font-headline font-bold text-on-surface-variant mb-3">Hepatic Metabolism Pathways</h3>
+<p class="text-outline leading-relaxed mb-6 font-body text-sm md:text-base">
+                                Phase I and Phase II reactions, Cytochrome P450 induction/inhibition, and genetic polymorphism impact on drug efficacy.
+                            </p>
+</div>
+<div class="w-full md:w-auto flex items-center justify-center">
+<span class="px-4 py-2 bg-surface-variant text-on-surface-variant rounded-xl text-xs font-bold tracking-wide">Prerequisite: Mod 2</span>
+</div>
+</article>
+</div>
+<!-- Right Sidebar: Clinical Reference Panel -->
+<aside class="w-full lg:w-80 flex flex-col gap-6">
+<!-- Quick Reference Card -->
+<div class="bg-primary-container text-primary-fixed rounded-[2rem] p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-20 pointer-events-none">
+<span class="material-symbols-outlined text-6xl">science</span>
+</div>
+<h4 class="text-lg font-headline font-bold text-surface-container-lowest mb-4">Clinical Reference</h4>
+<ul class="flex flex-col gap-4 text-sm font-body">
+<li class="flex flex-col gap-1 border-b border-primary-fixed/10 pb-3">
+<span class="font-bold text-primary-fixed-dim uppercase text-[10px] tracking-widest">Bioavailability (F)</span>
+<span class="font-mono text-surface-container-lowest bg-primary/30 p-2 rounded-lg text-xs break-all">F = (AUC_oral * Dose_IV) / (AUC_IV * Dose_oral)</span>
+</li>
+<li class="flex flex-col gap-1 border-b border-primary-fixed/10 pb-3">
+<span class="font-bold text-primary-fixed-dim uppercase text-[10px] tracking-widest">Volume of Distribution (Vd)</span>
+<span class="font-mono text-surface-container-lowest bg-primary/30 p-2 rounded-lg text-xs">Vd = Dose / C0</span>
+</li>
+<li class="flex flex-col gap-1">
+<span class="font-bold text-primary-fixed-dim uppercase text-[10px] tracking-widest">Clearance (Cl)</span>
+<span class="font-mono text-surface-container-lowest bg-primary/30 p-2 rounded-lg text-xs">Cl = Rate of elimination / Plasma conc.</span>
+</li>
+</ul>
+</div>
+<!-- Peer Insight Card -->
+<div class="bg-surface-container-lowest rounded-[2rem] p-6 border border-outline-variant/15">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary">group</span>
+<h4 class="text-sm font-headline font-bold text-primary uppercase tracking-wider">Cohort Insight</h4>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed italic border-l-2 border-tertiary pl-4">
+                            "Focus heavily on the mathematical derivation of Volume of Distribution. It consistently appears on the Section 2 clinical vignette assessments."
+                        </p>
+<div class="mt-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-xs font-bold text-primary">DR</div>
+<span class="text-xs font-medium text-on-surface-variant">Dr. R. Chen, Top 5%</span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) - Hidden on Web based on rules, shown on mobile destinations -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface-container-lowest border-t border-outline-variant/15 flex justify-around py-3 px-2 z-50 pb-safe">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium font-label">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary p-2" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="text-[10px] font-bold font-label">Subjects</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium font-label">Dash</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium font-label">Settings</span>
+</a>
+</nav>
+  <script src="assets/site-router.js"></script>
+</body></html>
