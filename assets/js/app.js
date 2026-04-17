@@ -508,59 +508,112 @@ async function startDailyChallengeBySubject(subjectId, requestedCount) {
   navigateWithLoader('./study.html?daily=1');
 }
 
+  
 function ensureShell() {
-  const root = document.getElementById('site-shell');
-  const meta = getPageMeta();
-
-  root.innerHTML = `
-    <div class="editorial-shell">
-      <aside class="editorial-sidebar">
-        <div class="editorial-brand">
-          <h1>Pharmacy Nexus</h1>
-          <p>Editorial Premium</p>
-        </div>
-
-        <nav class="editorial-nav">
-          <a href="./index.html" class="${PAGE === 'home' ? 'is-active' : ''}"><span>Home</span><span>→</span></a>
-          <a href="./subjects.html" class="${PAGE === 'subjects' || PAGE === 'topics' || PAGE === 'topic' ? 'is-active' : ''}"><span>Subjects</span><span>→</span></a>
-          <a href="./dashboard.html" class="${PAGE === 'dashboard' ? 'is-active' : ''}"><span>Dashboard</span><span>→</span></a>
-          <a href="./saved.html" class="${PAGE === 'saved' ? 'is-active' : ''}"><span>Saved</span><span>→</span></a>
-          <a href="./final-exam.html" class="${PAGE === 'final-exam' ? 'is-active' : ''}"><span>Final Exam</span><span>→</span></a>
-          <a href="./auth.html" class="${PAGE === 'auth' ? 'is-active' : ''}"><span>Auth</span><span>→</span></a>
-        </nav>
-
-        <div class="editorial-sidebar-footer">
-          <button class="editorial-side-btn" type="button">Review Formulas</button>
-          <div class="editorial-profile">
-            <div class="editorial-avatar"></div>
-            <div class="editorial-profile-copy">
+    const root = document.getElementById('site-shell');
+    const meta = getPageMeta();
+    root.innerHTML = `
+      <div class="drawer-backdrop" id="drawerBackdrop"></div>
+      <aside class="app-drawer" id="appDrawer" aria-label="Primary navigation">
+        <div class="drawer-head">
+          <a class="drawer-brand" href="./index.html">
+            <span class="drawer-brand-mark" aria-hidden="true">
+              <span class="nexus-core"></span>
+              <span class="nexus-ring ring-a"></span>
+              <span class="nexus-ring ring-b"></span>
+              <span class="nexus-node node-a"></span>
+              <span class="nexus-node node-b"></span>
+              <span class="nexus-node node-c"></span>
+            </span>
+            <span>
               <strong>Pharmacy Nexus</strong>
-              <span>Study Workspace</span>
-            </div>
-          </div>
+              <small>Editorial Premium</small>
+            </span>
+          </a>
+          <button class="drawer-close" id="drawerClose" type="button" aria-label="Close navigation">×</button>
         </div>
+
+        <div class="drawer-intro card">
+          <span class="tag">${meta.kicker}</span>
+          <h3>${meta.title}</h3>
+          <p class="muted">${meta.description}</p>
+        </div>
+
+        <nav class="drawer-nav" id="navMenu">
+          ${createDrawerLink('./index.html', 'Home', 'Overview and daily practice', PAGE === 'home')}
+          ${createDrawerLink('./subjects.html', 'Subjects', 'Browse subjects and topics', PAGE === 'subjects' || PAGE === 'topics' || PAGE === 'topic')}
+          ${createDrawerLink('./dashboard.html', 'Dashboard', 'Your performance and progress', PAGE === 'dashboard')}
+          ${createDrawerLink('./saved.html', 'Saved', 'Starred questions and notes', PAGE === 'saved')}
+          ${createDrawerLink('./final-exam.html', 'Final Exam', 'Timed mixed assessment', PAGE === 'final-exam')}
+        </nav>
       </aside>
 
-      <div class="editorial-main">
-        <header class="editorial-topbar">
-          <div class="editorial-page-meta">
-            <small>${meta.kicker}</small>
-            <strong>${meta.title}</strong>
+      <div class="route-loader" id="routeLoader" aria-hidden="true">
+        <div class="route-loader-shell">
+          <div class="route-loader-network">
+            <div class="route-loader-grid"></div>
+            <div class="route-loader-bond bond-a"></div>
+            <div class="route-loader-bond bond-b"></div>
+            <div class="route-loader-bond bond-c"></div>
+            <div class="route-loader-atom atom-center"></div>
+            <div class="route-loader-atom atom-a"></div>
+            <div class="route-loader-atom atom-b"></div>
+            <div class="route-loader-atom atom-c"></div>
+            <div class="route-loader-pulse pulse-a"></div>
+            <div class="route-loader-pulse pulse-b"></div>
           </div>
-
-          <div class="editorial-topbar-actions">
-            <button class="editorial-icon-btn" type="button">⌕</button>
-            <button class="editorial-icon-btn" type="button">⦿</button>
+          <div class="route-loader-copy">
+            <span class="badge">Nexus Transition</span>
+            <h2 id="routeLoaderDestination">Opening next page</h2>
+            <p id="routeLoaderMeta">Building the next view through a live Nexus reaction…</p>
           </div>
-        </header>
-
-        <main class="editorial-page" id="pageRoot"></main>
+        </div>
       </div>
-    </div>
-  `;
 
-  bindRouteLinks(root);
-}
+      <header class="site-header app-topbar">
+        <div class="container navbar app-topbar-inner">
+          <div class="app-topbar-left">
+            <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation"><span></span></button>
+            <a class="brand app-brand" href="./index.html">
+              <span class="brand-mark brand-mark-nexus" aria-hidden="true">
+                <span class="nexus-core"></span>
+                <span class="nexus-node node-a"></span>
+                <span class="nexus-node node-b"></span>
+                <span class="nexus-node node-c"></span>
+              </span>
+              <span>Pharmacy Nexus</span>
+            </a>
+          </div>
+          <div class="page-context">
+            <span class="page-context-kicker">${meta.kicker}</span>
+            <strong>${meta.title}</strong>
+            <small>${meta.description}</small>
+          </div>
+        </div>
+      </header>
+      <main class="main-section"><div class="container" id="pageRoot"></div></main>
+      <footer class="footer">
+        <div class="container footer-shell">
+          <div>
+            <strong>Admin is hidden.</strong>
+            <div>Press Ctrl + Shift + Q to open the hidden admin panel.</div>
+          </div>
+        </div>
+      </footer>
+      <div class="admin-backdrop" id="adminBackdrop"></div>
+    `;
+
+    document.getElementById('navToggle')?.addEventListener('click', () => {
+      const isOpen = document.getElementById('appDrawer')?.classList.contains('is-open');
+      if (isOpen) closeDrawer();
+      else openDrawer();
+    });
+    document.getElementById('drawerClose')?.addEventListener('click', closeDrawer);
+    document.getElementById('drawerBackdrop')?.addEventListener('click', closeDrawer);
+    bindRouteLinks(root);
+  }
+
+
   function getSubjectAccent(subjectName = '', index = 0) {
     const key = subjectName.toLowerCase();
     if (key.includes('pharmacology') || key.includes('فارما')) {
@@ -629,6 +682,7 @@ function ensureShell() {
       </section>
     `;
   }
+
 
 function renderHome(index) {
   const root = document.getElementById('pageRoot');
@@ -826,127 +880,31 @@ function renderHome(index) {
       </section>
     </div>
   `;
+const dailyBtn = document.getElementById('dailyChallengeBtn');
+const dailyMsg = document.getElementById('dailyChallengeMsg');
+const spinSubjectBtn = document.getElementById('spinSubjectBtn');
+const spinCountBtn = document.getElementById('spinCountBtn');
 
-  const dailyBtn = document.getElementById('dailyChallengeBtn');
-  const dailyMsg = document.getElementById('dailyChallengeMsg');
-  const spinSubjectBtn = document.getElementById('spinSubjectBtn');
-  const spinCountBtn = document.getElementById('spinCountBtn');
+const subjectDisplay = document.getElementById('dailySubjectDisplay');
+const countDisplay = document.getElementById('dailyCountDisplay');
+const subjectMeta = document.getElementById('dailySubjectMeta');
+const countMeta = document.getElementById('dailyCountMeta');
+const summary = document.getElementById('dailySelectionSummary');
 
-  const subjectDisplay = document.getElementById('dailySubjectDisplay');
-  const countDisplay = document.getElementById('dailyCountDisplay');
-  const subjectMeta = document.getElementById('dailySubjectMeta');
-  const countMeta = document.getElementById('dailyCountMeta');
-  const summary = document.getElementById('dailySelectionSummary');
+let selectedDailySubject = null;
+let selectedDailyCount = null;
 
-  let selectedDailySubject = null;
-  let selectedDailyCount = null;
+const subjectOptions = subjects.map((subject) => ({
+  id: subject.id,
+  name: subject.name,
+  totalQuestions: (subject.topics || []).reduce((sum, topic) => sum + (topic.questionCount || 0), 0),
+  label: subject.name
+}));
 
-  const subjectOptions = subjects.map((subject) => ({
-    id: subject.id,
-    name: subject.name,
-    totalQuestions: (subject.topics || []).reduce((sum, topic) => sum + (topic.questionCount || 0), 0),
-    label: subject.name
-  }));
-
-  function refreshDailySummary() {
-    summary.innerHTML = `
-      <div class="editorial-summary-row"><span>Selected Subject</span><strong>${selectedDailySubject?.name || '—'}</strong></div>
-      <div class="editorial-summary-row"><span>Questions</span><strong>${selectedDailyCount || '—'}</strong></div>
-    `;
-    dailyBtn.disabled = !(selectedDailySubject && selectedDailyCount);
-  }
-
-  function animateLuckyNumber(maxCount, audioCtx) {
-    return new Promise((resolve) => {
-      let ticks = 0;
-      const totalTicks = 16 + Math.floor(Math.random() * 8);
-
-      const interval = setInterval(() => {
-        const value = getRandomInt(1, maxCount);
-        countDisplay.textContent = `${value}`;
-        playTickSound(audioCtx, 950 + (ticks % 4) * 35, 0.012, 0.018);
-        ticks += 1;
-
-        if (ticks >= totalTicks) {
-          clearInterval(interval);
-          const finalValue = getRandomInt(1, maxCount);
-          countDisplay.textContent = `${finalValue}`;
-          playFinishSound(audioCtx);
-          resolve(finalValue);
-        }
-      }, 80);
-    });
-  }
-
-  spinSubjectBtn?.addEventListener('click', async () => {
-    if (!subjectOptions.length) {
-      dailyMsg.innerHTML = '<div class="message error">No subjects available yet.</div>';
-      return;
-    }
-
-    dailyMsg.innerHTML = '';
-    selectedDailyCount = null;
-    countDisplay.textContent = '?';
-    countMeta.textContent = 'Spin a subject first.';
-    spinCountBtn.disabled = true;
-    refreshDailySummary();
-
-    const audioCtx = ensureWheelAudio();
-    spinSubjectBtn.disabled = true;
-    spinSubjectBtn.textContent = 'Spinning...';
-
-    setTimeout(() => {
-      const picked = subjectOptions[Math.floor(Math.random() * subjectOptions.length)];
-      selectedDailySubject = picked;
-      subjectDisplay.textContent = picked.name;
-      const maxCount = clampDailyCount(picked.totalQuestions);
-      subjectMeta.textContent = `${picked.totalQuestions} questions available in this subject.`;
-      countMeta.textContent = `Lucky number range: 1 to ${maxCount}.`;
-      spinCountBtn.disabled = false;
-      spinSubjectBtn.disabled = false;
-      spinSubjectBtn.textContent = 'Spin Subject';
-      playFinishSound(audioCtx);
-      refreshDailySummary();
-    }, 900);
-  });
-
-  spinCountBtn?.addEventListener('click', async () => {
-    if (!selectedDailySubject) return;
-
-    dailyMsg.innerHTML = '';
-    const maxCount = clampDailyCount(selectedDailySubject.totalQuestions);
-    const audioCtx = ensureWheelAudio();
-
-    spinCountBtn.disabled = true;
-    selectedDailyCount = await animateLuckyNumber(maxCount, audioCtx);
-    spinCountBtn.disabled = false;
-
-    countMeta.textContent = `Challenge will use ${selectedDailyCount} question${selectedDailyCount === 1 ? '' : 's'}.`;
-    refreshDailySummary();
-  });
-
-  dailyBtn?.addEventListener('click', async () => {
-    if (!(selectedDailySubject && selectedDailyCount)) return;
-
-    dailyBtn.disabled = true;
-    dailyBtn.textContent = 'Preparing...';
-    dailyMsg.innerHTML = '';
-
-    try {
-      await startDailyChallengeBySubject(selectedDailySubject.id, selectedDailyCount);
-    } catch (error) {
-      dailyMsg.innerHTML = `<div class="message error">${error.message}</div>`;
-      dailyBtn.disabled = false;
-      dailyBtn.textContent = 'Start Daily Challenge';
-    }
-  });
-
-  refreshDailySummary();
-}
 function refreshDailySummary() {
   summary.innerHTML = `
-    <div class="metric-row"><span>Selected Subject</span><strong>${selectedDailySubject?.name || '—'}</strong></div>
-    <div class="metric-row"><span>Questions</span><strong>${selectedDailyCount || '—'}</strong></div>
+    <div class="editorial-summary-row"><span>Selected Subject</span><strong>${selectedDailySubject?.name || '—'}</strong></div>
+    <div class="editorial-summary-row"><span>Questions</span><strong>${selectedDailyCount || '—'}</strong></div>
   `;
   dailyBtn.disabled = !(selectedDailySubject && selectedDailyCount);
 }
@@ -987,28 +945,22 @@ spinSubjectBtn?.addEventListener('click', async () => {
   refreshDailySummary();
 
   const audioCtx = ensureWheelAudio();
-
   spinSubjectBtn.disabled = true;
-  const picked = await spinWheel({
-    wheelEl: subjectWheelDisc,
-    resultEl: subjectDisplay,
-    options: subjectOptions,
-    getResultText: (item) => item.name,
-    audioCtx,
-    duration: 3200
-  });
-  spinSubjectBtn.disabled = false;
+  spinSubjectBtn.textContent = 'Spinning...';
 
-  selectedDailySubject = picked;
-
-  if (picked) {
+  setTimeout(() => {
+    const picked = subjectOptions[Math.floor(Math.random() * subjectOptions.length)];
+    selectedDailySubject = picked;
+    subjectDisplay.textContent = picked.name;
     const maxCount = clampDailyCount(picked.totalQuestions);
-    subjectMeta.textContent = `${picked.totalQuestions} question${picked.totalQuestions === 1 ? '' : 's'} available in this subject.`;
+    subjectMeta.textContent = `${picked.totalQuestions} questions available in this subject.`;
     countMeta.textContent = `Lucky number range: 1 to ${maxCount}.`;
     spinCountBtn.disabled = false;
-  }
-
-  refreshDailySummary();
+    spinSubjectBtn.disabled = false;
+    spinSubjectBtn.textContent = 'Spin Subject';
+    playFinishSound(audioCtx);
+    refreshDailySummary();
+  }, 900);
 });
 
 spinCountBtn?.addEventListener('click', async () => {
@@ -1044,6 +996,7 @@ dailyBtn?.addEventListener('click', async () => {
 
 refreshDailySummary();
 }
+
   function renderSubjectCards(subjects, target, searchInput) {
     const draw = (term = '') => {
       const filtered = subjects.filter((subject) => subject.name.toLowerCase().includes(term.toLowerCase()));
