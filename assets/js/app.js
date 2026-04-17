@@ -508,118 +508,59 @@ async function startDailyChallengeBySubject(subjectId, requestedCount) {
   navigateWithLoader('./study.html?daily=1');
 }
 
-  function ensureShell() {
-    const root = document.getElementById('site-shell');
-    const meta = getPageMeta();
-    root.innerHTML = `
-      <div class="drawer-backdrop" id="drawerBackdrop"></div>
-      <aside class="app-drawer" id="appDrawer" aria-label="Primary navigation">
-        <div class="drawer-head">
-          <a class="drawer-brand" href="./index.html">
-            <span class="drawer-brand-mark" aria-hidden="true">
-              <span class="nexus-core"></span>
-              <span class="nexus-ring ring-a"></span>
-              <span class="nexus-ring ring-b"></span>
-              <span class="nexus-node node-a"></span>
-              <span class="nexus-node node-b"></span>
-              <span class="nexus-node node-c"></span>
-            </span>
-            <span>
-              <strong>Pharmacy Nexus</strong>
-              <small>Chemical learning system</small>
-            </span>
-          </a>
-          <button class="drawer-close" id="drawerClose" type="button" aria-label="Close navigation">×</button>
+function ensureShell() {
+  const root = document.getElementById('site-shell');
+  const meta = getPageMeta();
+
+  root.innerHTML = `
+    <div class="editorial-shell">
+      <aside class="editorial-sidebar">
+        <div class="editorial-brand">
+          <h1>Pharmacy Nexus</h1>
+          <p>Editorial Premium</p>
         </div>
 
-        <div class="drawer-intro card">
-          <span class="tag">${meta.kicker}</span>
-          <h3>${meta.title}</h3>
-          <p class="muted">${meta.description}</p>
-        </div>
-
-        <nav class="drawer-nav" id="navMenu">
-          ${createDrawerLink('./index.html', 'Home', 'Overview, daily challenge, and recent activity', PAGE === 'home')}
-          ${createDrawerLink('./subjects.html', 'Subjects', 'Browse the full subject map and start clearly', PAGE === 'subjects' || PAGE === 'topics' || PAGE === 'topic')}
-          ${createDrawerLink('./auth.html', 'Auth', 'Sign in or create your account', PAGE === 'auth')}
-          ${createDrawerLink('./final-exam.html', 'Final Exam', 'Timed mixed assessment with full review', PAGE === 'final-exam')}
-          ${createDrawerLink('./dashboard.html', 'Dashboard', 'Your performance, progress, and history', PAGE === 'dashboard')}
-          ${createDrawerLink('./saved.html', 'Saved & Notes', 'Return to starred questions and notes', PAGE === 'saved')}
-          ${createDrawerLink('./intern/index.html', 'Intern', 'Enter the intern section and related tools', false)}
+        <nav class="editorial-nav">
+          <a href="./index.html" class="${PAGE === 'home' ? 'is-active' : ''}"><span>Home</span><span>→</span></a>
+          <a href="./subjects.html" class="${PAGE === 'subjects' || PAGE === 'topics' || PAGE === 'topic' ? 'is-active' : ''}"><span>Subjects</span><span>→</span></a>
+          <a href="./dashboard.html" class="${PAGE === 'dashboard' ? 'is-active' : ''}"><span>Dashboard</span><span>→</span></a>
+          <a href="./saved.html" class="${PAGE === 'saved' ? 'is-active' : ''}"><span>Saved</span><span>→</span></a>
+          <a href="./final-exam.html" class="${PAGE === 'final-exam' ? 'is-active' : ''}"><span>Final Exam</span><span>→</span></a>
+          <a href="./auth.html" class="${PAGE === 'auth' ? 'is-active' : ''}"><span>Auth</span><span>→</span></a>
         </nav>
 
-        <div class="drawer-note">
-          <span class="drawer-note-title">Nexus tip</span>
-          <p>Every page here is part of one connected study network, so you always know where to begin and where to continue.</p>
+        <div class="editorial-sidebar-footer">
+          <button class="editorial-side-btn" type="button">Review Formulas</button>
+          <div class="editorial-profile">
+            <div class="editorial-avatar"></div>
+            <div class="editorial-profile-copy">
+              <strong>Pharmacy Nexus</strong>
+              <span>Study Workspace</span>
+            </div>
+          </div>
         </div>
       </aside>
 
-      <div class="route-loader" id="routeLoader" aria-hidden="true">
-        <div class="route-loader-shell">
-          <div class="route-loader-network">
-            <div class="route-loader-grid"></div>
-            <div class="route-loader-bond bond-a"></div>
-            <div class="route-loader-bond bond-b"></div>
-            <div class="route-loader-bond bond-c"></div>
-            <div class="route-loader-atom atom-center"></div>
-            <div class="route-loader-atom atom-a"></div>
-            <div class="route-loader-atom atom-b"></div>
-            <div class="route-loader-atom atom-c"></div>
-            <div class="route-loader-pulse pulse-a"></div>
-            <div class="route-loader-pulse pulse-b"></div>
-          </div>
-          <div class="route-loader-copy">
-            <span class="badge">Nexus Transition</span>
-            <h2 id="routeLoaderDestination">Opening next page</h2>
-            <p id="routeLoaderMeta">Building the next view through a live Nexus reaction…</p>
-          </div>
-        </div>
-      </div>
-
-      <header class="site-header app-topbar">
-        <div class="container navbar app-topbar-inner">
-          <div class="app-topbar-left">
-            <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation"><span></span></button>
-            <a class="brand app-brand" href="./index.html">
-              <span class="brand-mark brand-mark-nexus" aria-hidden="true">
-                <span class="nexus-core"></span>
-                <span class="nexus-node node-a"></span>
-                <span class="nexus-node node-b"></span>
-                <span class="nexus-node node-c"></span>
-              </span>
-              <span>Pharmacy Nexus</span>
-            </a>
-          </div>
-          <div class="page-context">
-            <span class="page-context-kicker">${meta.kicker}</span>
+      <div class="editorial-main">
+        <header class="editorial-topbar">
+          <div class="editorial-page-meta">
+            <small>${meta.kicker}</small>
             <strong>${meta.title}</strong>
-            <small>${meta.description}</small>
           </div>
-        </div>
-      </header>
-      <main class="main-section"><div class="container" id="pageRoot"></div></main>
-      <footer class="footer">
-        <div class="container footer-shell">
-          <div>
-            <strong>Contact: pharmacynexusofficial@gmail.com</strong>
-            <div>For feedback, collaboration, or educational contributions, feel free to contact us.</div>
+
+          <div class="editorial-topbar-actions">
+            <button class="editorial-icon-btn" type="button">⌕</button>
+            <button class="editorial-icon-btn" type="button">⦿</button>
           </div>
-        </div>
-      </footer>
-      <div class="admin-backdrop" id="adminBackdrop"></div>
-    `;
+        </header>
 
-    document.getElementById('navToggle')?.addEventListener('click', () => {
-      const isOpen = document.getElementById('appDrawer')?.classList.contains('is-open');
-      if (isOpen) closeDrawer();
-      else openDrawer();
-    });
-    document.getElementById('drawerClose')?.addEventListener('click', closeDrawer);
-    document.getElementById('drawerBackdrop')?.addEventListener('click', closeDrawer);
-    bindRouteLinks(root);
-  }
+        <main class="editorial-page" id="pageRoot"></main>
+      </div>
+    </div>
+  `;
 
-
+  bindRouteLinks(root);
+}
   function getSubjectAccent(subjectName = '', index = 0) {
     const key = subjectName.toLowerCase();
     if (key.includes('pharmacology') || key.includes('فارما')) {
