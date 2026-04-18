@@ -1,4 +1,4 @@
-() => {
+(() => {
   'use strict';
 
   const PAGE = document.body.dataset.page || 'home';
